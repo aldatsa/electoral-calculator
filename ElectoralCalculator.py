@@ -153,7 +153,7 @@ class pydhondt(Gtk.Window):
         self.builder = Gtk.Builder()
         
         # Load UI from file
-        self.builder.add_from_file("gui_0.5.3.glade")
+        self.builder.add_from_file("gui.glade")
         
         # Connect signal
         self.builder.connect_signals(self)
