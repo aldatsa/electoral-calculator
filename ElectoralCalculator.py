@@ -194,6 +194,9 @@ class pydhondt(Gtk.Window):
         # Get txtVotes from the UI
         self.txtVotes = self.builder.get_object("txtVotes")
         
+        # Get tvwCandidatures from the UI
+        self.tvwCandidatures = self.builder.get_object("tvwCandidatures")
+        
         # Get btnCalculate from the UI
         self.btnAddCandidature = self.builder.get_object("btnAddCandidature")
         
@@ -205,7 +208,36 @@ class pydhondt(Gtk.Window):
         
         # Destroy builder, since we don't need it anymore
         del(self.builder)
-                            
+        
+        # Create a ListStore for the candidatures
+        self.listStoreCandidatures = Gtk.ListStore(str, str)
+        
+        # Create the TreeViewColumns to display the list of candidatures
+        self.tvwcolParty = Gtk.TreeViewColumn('Party')
+        self.tvwcolVotes = Gtk.TreeViewColumn('Votes')
+        
+        # Add the TreeViewColumns to tvwCandidatures
+        self.tvwCandidatures.append_column(self.tvwcolParty)
+        self.tvwCandidatures.append_column(self.tvwcolVotes)
+
+        # Create a CellRenderer to render the candidatures
+        self.cellCandidatures = Gtk.CellRendererText()
+        self.cellCandidatures.set_property('xalign', 0.5)
+
+        # Add cellCandidatures to the tvw columns and allow it to expand
+        self.tvwcolParty.pack_start(self.cellCandidatures, True)
+        self.tvwcolVotes.pack_start(self.cellCandidatures, True)
+
+        # add the cell "text" attribute to column 0 - retrieve text
+        # from that column in treestore
+        self.tvwcolParty.add_attribute(self.cellCandidatures, 'text', 0)
+        self.tvwcolVotes.add_attribute(self.cellCandidatures, 'text', 1)        
+
+        self.listStoreCandidatures.append(["-", "-"])
+        
+        # Attache the model to the treeview
+        self.tvwCandidatures.set_model(self.listStoreCandidatures)
+                        
         # Create a ListStore for the results
         self.liststore = Gtk.ListStore(str, str, str, str, str, str)
             
