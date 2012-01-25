@@ -397,6 +397,10 @@ class pydhondt(Gtk.Window):
                 self.txtVotes.grab_focus()
                 return 1
 
+        # If this candidature is the first one, delete the "-" from the liststore
+        if self.listStoreCandidatures[0][0] == "-":
+            self.listStoreCandidatures.clear()
+            
         # Add the new candidature to listStoreCandidatures: [party, votes]
         self.listStoreCandidatures.append([self.txtParty.get_text(), self.txtVotes.get_text()])
 
