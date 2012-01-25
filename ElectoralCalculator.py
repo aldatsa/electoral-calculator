@@ -290,8 +290,8 @@ class pydhondt(Gtk.Window):
         msgDlg = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, infoText)
         msgDlg.run()
         msgDlg.destroy()
-        
-    def on_btnAddCandidature_clicked(self, widget):
+
+    def on_btnCalculate_clicked(self, widget):        
             
         MSL_FirstDivisor = 1.4
         
@@ -315,21 +315,7 @@ class pydhondt(Gtk.Window):
             self.txtSeats.set_text("")
             self.txtSeats.grab_focus()
             return 1
-            
-        try:
-            self.votes[self.txtParty.get_text()] = int(self.txtVotes.get_text())
-        except:
-            if self.txtParty.get_text() == "":
-                self.show_info_message(self, "The name of the party can't be empty")
-                self.txtParty.grab_focus()
-                return 1
-                
-            else:
-                self.show_info_message(self, "The number of votes must be an integer value")
-                self.txtVotes.set_text("")
-                self.txtVotes.grab_focus()
-                return 1
-        
+                    
         try:
             census = int(self.txtCensus.get_text())
         except:
@@ -358,9 +344,6 @@ class pydhondt(Gtk.Window):
                 self.show_info_message(self, "The threshold must be a number, it won't be used in the calculation of the results")
             threshold = 0
             
-        self.txtParty.set_text("")
-        self.txtVotes.set_text("")
-
         self.liststore.clear()
         
         totalVotes = calculateTotalVotes(self.votes, blankVotes, nullVotes)
@@ -399,6 +382,29 @@ class pydhondt(Gtk.Window):
         
         self.txtParty.grab_focus()
     
+    def on_btnAddCandidature_clicked(self, widget):
+        try:
+            self.votes[self.txtParty.get_text()] = int(self.txtVotes.get_text())
+        except:
+            if self.txtParty.get_text() == "":
+                self.show_info_message(self, "The name of the party can't be empty")
+                self.txtParty.grab_focus()
+                return 1
+                
+            else:
+                self.show_info_message(self, "The number of votes must be an integer value")
+                self.txtVotes.set_text("")
+                self.txtVotes.grab_focus()
+                return 1
+
+        # Add the new candidature to listStoreCandidatures: [party, votes]
+        self.listStoreCandidatures.append([self.txtParty.get_text(), self.txtVotes.get_text()])
+
+        self.txtParty.set_text("")
+        self.txtVotes.set_text("")
+
+        self.txtParty.grab_focus()
+        
     def on_rbtnDhondt_toggled(self, widget):
         self.method = "D'hondt"    
     
