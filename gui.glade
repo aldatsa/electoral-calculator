@@ -793,12 +793,13 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="button1">
+                      <object class="GtkButton" id="btnDeleteSelection">
                         <property name="label" translatable="yes">Delete selection</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="use_action_appearance">False</property>
+                        <signal name="clicked" handler="on_btnDeleteSelection_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>

@@ -167,6 +167,10 @@ class pydhondt(Gtk.Window):
         # Votes for each party
         self.votes = {}        
         
+        # The model and treeIter of the selected item in tvwCandidatures
+        self.tvwCandidaturesModel = None
+        self.tvwCandidaturesTreeIter = None
+                
         # Create new GtkBuilder object
         self.builder = Gtk.Builder()
         
@@ -237,7 +241,12 @@ class pydhondt(Gtk.Window):
         
         # Attache the model to the treeview
         self.tvwCandidatures.set_model(self.listStoreCandidatures)
-                        
+        
+        # Get a reference to a selection object and connect to the "changed" signal
+        # to manage the user's clicks on tvwCandidatures
+        select = self.tvwCandidatures.get_selection()
+        select.connect("changed", self.on_tvwCandidatures_selection_changed)
+        
         # Create a ListStore for the results
         self.liststore = Gtk.ListStore(str, str, str, str, str, str)
             
@@ -408,6 +417,16 @@ class pydhondt(Gtk.Window):
         self.txtVotes.set_text("")
 
         self.txtParty.grab_focus()
+    
+    def on_btnDeleteSelection_clicked(self, widget):
+        print "Do you want to delete the party " + self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0] + "with the TreeIter " + str(self.tvwCandidaturesTreeIter) + "?"
+        
+    def on_tvwCandidatures_selection_changed(self, selection):
+        model, treeiter = selection.get_selected()
+        if treeiter != None:
+            print "You selected", model[treeiter][0]
+        self.tvwCandidaturesModel = model
+        self.tvwCandidaturesTreeIter = treeiter
         
     def on_rbtnDhondt_toggled(self, widget):
         self.method = "D'hondt"    
