@@ -419,8 +419,18 @@ class pydhondt(Gtk.Window):
         self.txtParty.grab_focus()
     
     def on_btnDeleteSelection_clicked(self, widget):
-        print "Do you want to delete the party " + self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0] + "with the TreeIter " + str(self.tvwCandidaturesTreeIter) + "?"
-        
+        try:
+            msgDlg = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.YES_NO, "Do you want to delete the party " + self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0] + "?")
+            response = msgDlg.run()
+            msgDlg.destroy()
+            if response == Gtk.ResponseType.YES:
+                # Delete the selected party from the dictionary votes
+                del self.votes[self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0]]
+                # Delete the selected party from listStoreCandidatures
+                self.listStoreCandidatures.remove(self.tvwCandidaturesTreeIter)
+        except:
+            self.show_info_message(self, "You have to select a candidature first")
+                    
     def on_tvwCandidatures_selection_changed(self, selection):
         model, treeiter = selection.get_selected()
         if treeiter != None:
