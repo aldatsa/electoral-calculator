@@ -418,6 +418,9 @@ class pydhondt(Gtk.Window):
 
         self.txtParty.grab_focus()
     
+    def on_btnEditSelection_clicked(self, widget):
+        print "Not implemented yet"    
+    
     def on_btnDeleteSelection_clicked(self, widget):
         try:
             msgDlg = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.YES_NO, "Do you want to delete the party " + self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0] + "?")
