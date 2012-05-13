@@ -15,6 +15,12 @@ Bugs:
     
 Corrected bugs:
 
+    * Corrected in 0.5.3:
+    
+        * Correct the year shown in the About window.
+
+        * Substitute the example URL with the URL of the project's Launchpad page in the About window.
+
     * Corrected in 0.5.2:
     
         * Show the results in the TreeView. Since the functions were changed the UI doesn't work.
