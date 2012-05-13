@@ -1,0 +1,65 @@
+*********************************************************************
+*                           CHANGELOG                               *
+*-------------------------------------------------------------------*
+*       New features implemented and bugs fixed in each version     *
+*********************************************************************
+    
+    * 0.5.3
+
+        * Fixed bugs:
+        
+            * Correct the year shown in the About window.
+
+            * Substitute the example URL with the URL of the project's Launchpad page in the About window.
+
+        * New features:
+
+            * Added two largest remainder methods: Hare quota and droop quota.
+
+    * 0.5.2
+
+        * Fixed bugs:
+        
+            * Show the results in the TreeView. Since the functions were changed the UI doesn't work.
+            
+            * When two quots are equal the calculus is not correct:
+                * a: 1000 and b:500 -> a: 2 and b: 0 CORRECT (2 seats)
+                  but a: 500 and b: 1000 -> a:1 and b:1 INCORRECT (2 seats) (my app and http://www.calculoescanos.com/ but http://icon.cat/util/elections gets the correct answer).
+
+        * New features:
+
+            * Cuando en la relacion de cocientes coincidan dos correspondientes a distintas candidaturas, el escaño se atribuira a la que mayor numero total de votos hubiese obtenido.
+
+    * 0.5.1
+
+        * Fixed bugs:
+        
+            * If the number of votes is small and the number of seats it's quite big:
+            asier@asier-laptop ~/Dokumentuak/Proiektuak/D'hontCalculator/0.3 $ python pydhondt.py 
+                {'a': 12}
+                defaultdict(<type 'list'>, {'a': [12, 6, 4, 3, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+                Seat #1 goes to: a with 12 votes
+                Seat #2 goes to: a with 6 votes
+                Seat #3 goes to: a with 4 votes
+                Seat #4 goes to: a with 3 votes
+                Seat #5 goes to: a with 2 votes
+                Seat #6 goes to: a with 2 votes
+                Seat #7 goes to: a with 1 votes
+                Seat #8 goes to: a with 1 votes
+                Seat #9 goes to: a with 1 votes
+                Seat #10 goes to: a with 1 votes
+                Seat #11 goes to: a with 1 votes
+                Seat #12 goes to: a with 1 votes
+                Seat #13 goes to:  with 0 votes
+                Traceback (most recent call last):
+                  File "pydhondt.py", line 134, in on_btnAddCandidature_clicked
+                    self.calculateDhondt()
+                  File "pydhondt.py", line 187, in calculateDhondt
+                    dictDhondt[seatTo].pop(0)
+                IndexError: pop from empty list
+        
+    * 0.5.0
+
+        * New features:
+        
+            * Added three highest averages methods: Sainte-Lague, Modified Sainte-Laguë and Imperiali.

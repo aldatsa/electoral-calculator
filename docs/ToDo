@@ -1,0 +1,58 @@
+*************
+*   BUGS    *                
+*************
+
+    * When two or more parties have the same amount of votes the calculus is not correct:
+
+        * a: 1000 and b: 1000 -> a: 1 and b: 0 INCORRECT (2 seats) (my app, http://icon.cat/util/elections and http://www.calculoescanos.com/)
+          See Improvements.
+          
+    * The calculus to get the votes needed to obtain the last seat are not correct:
+
+        * a 1000    b 500   -> a: 2 ; b: 0 (2 seats)
+           votes to last seat: a: 0 ; b: 1 CORRECT (my app and http://icon.cat/util/elections)
+                           but a: 0 ; b: 0 INCORRECT (http://www.calculoescanos.com)
+                           
+        * a 1000    b 501   -> a: 1 ; b: 1 (2 seats)
+           votes to last seat: a: 3 ; b: 0 INCORRECT (my app and http://icon.cat/util/elections)
+                  it should be a: 2 ; b: 0 CORRECT (http://www.calculoescanos.com)
+
+************************************************
+*   IMPROVEMENTS AND NEW FEATURES (WISHLIST)   *
+************************************************
+
+    * Add options window:
+
+        * D'hondt method:
+
+            * Threshold calculus: votes[party]/totalVotes or votes[party]/validVotes
+
+            * Votes percent: votes[party]/totalVotes or votes[party]/validVotes
+            
+    * Add more calculation methods (check wikipedia):
+
+        * Highest averages methods: http://en.wikipedia.org/wiki/Highest_averages_method
+
+            * IMPLEMENTED 0.5.0 - Sainte-Laguë method: http://en.wikipedia.org/wiki/Sainte-Lagu%C3%AB_method and Modified Sainte-Laguë
+
+        * Largest remainder methods:
+
+            * Hare quota IMPLEMENTED 0.5.3
+
+            * Droop quota IMPLEMENTED 0.5.3
+
+            * Imperiali quota    
+            
+    * What to do when the quots or the number of votes of two parties are equal?
+
+        * In Spain: 
+
+            * IMPLEMENTED 0.5.2 - Cuando en la relacion de cocientes coincidan dos correspondientes a distintas candidaturas, el escaño se atribuira a la que mayor numero total de votos hubiese obtenido. 
+
+            * Si hubiera dos candidaturas con igual numero total de votos, el primer empate se resolvera por sorteo y los sucesivos de forma alternativa.
+    
+    * The possibility to do comparations of the results using different methods
+    
+    * The possibility to save the data
+    
+    * Add info about each calculation method (from wikipedia)
