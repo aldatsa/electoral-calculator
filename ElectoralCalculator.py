@@ -156,7 +156,14 @@ def calculateHighestAverage(votes, numSeats, method, threshold, votePercentages)
             #print "int(ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party])", int(ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party])
             #print "+++++++++++++", party, nextSeat[party], "++++++++++++++++++++++++++"
     return results, nextSeat
-        
+
+def isListStoreEmpty(listStore):
+    # get_iter_first() returns a Gtk.TreeIter instance pointing to the first iterator in the tree (the one at the path “0”) or None if the tree is empty.
+    # Is there a better way to know if a listStore is empty???
+    if listStore.get_iter_first() == None:
+        return True
+    return False
+
 class pydhondt(Gtk.Window):
     
     def __init__(self):
@@ -433,6 +440,9 @@ class pydhondt(Gtk.Window):
                 self.listStoreCandidatures.remove(self.tvwCandidaturesTreeIter)
         except:
             self.show_info_message(self, "You have to select a candidature first")
+
+        if isListStoreEmpty(self.listStoreCandidatures) == True:
+            self.listStoreCandidatures.append(["-", "-"])
 
     def on_btnClear_clicked(self, widget):
         try:

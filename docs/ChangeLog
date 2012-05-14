@@ -12,6 +12,8 @@
 
             * Substitute the example URL with the URL of the project's Launchpad page in the About window.
 
+            * 2012-05-14 Adding a candidature after deleting all the candidatures using "Delete selection" (btnDeleteSelection) throws an error
+
         * New features:
 
             * Added two largest remainder methods: Hare quota and droop quota.

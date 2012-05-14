@@ -17,6 +17,28 @@
            votes to last seat: a: 3 ; b: 0 INCORRECT (my app and http://icon.cat/util/elections)
                   it should be a: 2 ; b: 0 CORRECT (http://www.calculoescanos.com)
 
+    * FIXED 2012-05-14 
+      2012-05-14 Adding a candidature after deleting all the candidatures using "Delete selection" (btnDeleteSelection) throws an error:
+
+        * Error message:
+       
+            Traceback (most recent call last):
+              File "ElectoralCalculator.py", line 410, in on_btnAddCandidature_clicked
+                if self.listStoreCandidatures[0][0] == "-":
+              File "/usr/lib/python2.7/dist-packages/gi/overrides/Gtk.py", line 732, in __getitem__
+                raise IndexError("could not find tree path '%s'" % key)
+            IndexError: could not find tree path '0'
+
+        * The problem is here:
+            409 # If this candidature is the first one, delete the "-" from the liststore
+            410 if self.listStoreCandidatures[0][0] == "-":
+            411     self.listStoreCandidatures.clear()           
+        
+            The app expects to find a ["-", "-"] element if there aren't candidatures in the liststore. But the liststore is completely empty after deleting the last candidature
+            and self.listStoreCandidatures[0][0] throws an error.
+            
+        * Solution: Append a ["-", "-"] element when the last candidature is deleted.
+
 ************************************************
 *   IMPROVEMENTS AND NEW FEATURES (WISHLIST)   *
 ************************************************
