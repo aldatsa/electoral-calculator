@@ -301,7 +301,9 @@ class pydhondt(Gtk.Window):
             
         # Show window. All other widgets are automatically shown by GtkBuilder
         self.mainWindow.show()
-    
+        # Maximize the main window
+        self.mainWindow.maximize()
+
     def show_info_message(self, widget, infoText):
         msgDlg = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, infoText)
         msgDlg.run()
