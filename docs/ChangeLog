@@ -20,6 +20,8 @@
 
             * Added two largest remainder methods: Hare quota and droop quota.
 
+            * Add title to the main window: Electoral Calculator
+
     * 0.5.2
 
         * Fixed bugs:
