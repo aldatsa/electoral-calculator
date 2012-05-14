@@ -433,7 +433,20 @@ class pydhondt(Gtk.Window):
                 self.listStoreCandidatures.remove(self.tvwCandidaturesTreeIter)
         except:
             self.show_info_message(self, "You have to select a candidature first")
-                    
+
+    def on_btnClear_clicked(self, widget):
+        try:
+            msgDlg = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.YES_NO, "Do you want to clear the list of candidatures?")
+            response = msgDlg.run()
+            msgDlg.destroy()
+            if response == Gtk.ResponseType.YES:
+                # Clear the dictionary votes
+                self.votes.clear()
+                # Clear the listStoreCandidatures
+                self.listStoreCandidatures.clear()
+        except:
+            self.show_info_message(self, "The list of candidatures is already empty")
+
     def on_tvwCandidatures_selection_changed(self, selection):
         model, treeiter = selection.get_selected()
         if treeiter != None:
