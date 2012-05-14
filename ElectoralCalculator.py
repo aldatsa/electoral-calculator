@@ -454,6 +454,7 @@ class pydhondt(Gtk.Window):
                 self.votes.clear()
                 # Clear the listStoreCandidatures
                 self.listStoreCandidatures.clear()
+                self.listStoreCandidatures.append(["-", "-"])
         except:
             self.show_info_message(self, "The list of candidatures is already empty")
 

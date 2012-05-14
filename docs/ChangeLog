@@ -14,6 +14,8 @@
 
             * 2012-05-14 Adding a candidature after deleting all the candidatures using "Delete selection" (btnDeleteSelection) throws an error
 
+            * 2012-05-14 Adding a candidature after deleting all the candidatures using "Clear" (btnClear) throws an error
+
         * New features:
 
             * Added two largest remainder methods: Hare quota and droop quota.
