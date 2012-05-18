@@ -66,8 +66,8 @@ def getDivisor(numSeats, method, MSLFD=1.4):
             return MSLFD
         else:
             return 2 * numSeats + 1
-    elif method == "Imperiali":
-        return range(numSeats + 2)
+    elif method == "Imperiali": # The divisors are 2,3,4 etc
+        return numSeats + 2
     else:
         print "ERROR: Unknown method"
 

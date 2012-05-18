@@ -17,6 +17,27 @@
            votes to last seat: a: 3 ; b: 0 INCORRECT (my app and http://icon.cat/util/elections)
                   it should be a: 2 ; b: 0 CORRECT (http://www.calculoescanos.com)
 
+    * FIXED 2012-05-18
+      2012-05-18 Error that happens when using the imperiali method
+    
+        * Error message:
+
+            Traceback (most recent call last):
+              File "ElectoralCalculator.py", line 248, in on_btnCalculate_clicked
+                (results, nextSeat) = calculateHighestAverage(self.votes, numSeats, self.method, threshold, votePercentages)
+              File "/home/asier/Dokumentuak/Proiektuak/ElectoralCalculator/ElectoralCalculator/trunk/calculations.py", line 121, in calculateHighestAverage
+                quot = float(votes[party])/getDivisor(results[party], method) # Calculate the quot for this party in this round
+            TypeError: unsupported operand type(s) for /: 'float' and 'list'
+
+        * The problem is here:
+            In the function getDivisor:
+            69    elif method == "Imperiali":
+            70        return range(numSeats + 2)
+            
+            A range (a list) is returned instead of a number.
+
+        * Solution: Use "return numSeats + 2" instead of "return range(numSeats + 2)"
+
     * FIXED 2012-05-14 
       2012-05-14 Adding a candidature after deleting all the candidatures using "Delete selection" (btnDeleteSelection) throws an error:
 

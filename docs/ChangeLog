@@ -16,6 +16,8 @@
 
             * 2012-05-14 Adding a candidature after deleting all the candidatures using "Clear" (btnClear) throws an error
 
+            * 2012-05-18 Fix error that happens when using the imperiali method
+
         * New features:
 
             * Added two largest remainder methods: Hare quota and droop quota.
@@ -23,6 +25,8 @@
             * Add title to the main window: Electoral Calculator
             
             * Show the main window maximized by default
+            
+            * Create a new file (calculations.py) for the functions used to calculate the results
 
     * 0.5.2
 
