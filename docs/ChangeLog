@@ -30,6 +30,10 @@
 
             * Added some doctests for the d'Hondt, Sainte-Laguë, and modified Sainte-Laguë methods
 
+            * Create a enum like class to identify the different calculation methods and adapt the code to use them
+            
+            * Improved about dialog
+e
     * 0.5.2
 
         * Fixed bugs:

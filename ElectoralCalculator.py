@@ -367,14 +367,49 @@ class pydhondt(Gtk.Window):
         #infoMethods.show()
                 
     def on_help_about_clicked(self, widget):
+        """ dislpay the about box for ElectoralCalculator"""
+        
+        # Create AboutDialog object
         about = Gtk.AboutDialog()
+        
+        # Add the application name to the dialog
         about.set_program_name("Electoral Calculator")
+        
+        # Set the application version
         about.set_version("0.5.3")
+        
+        # Pass a list of authors. This is then connected to the 'Credits'
+        # button. When clicked the button opens a new window showing
+        # each author on their own line.
+        about.set_authors(['Asier Iturralde Sarasola'])
+        
+        # Set the copyright notice
         about.set_copyright("© 2012 Asier Iturralde Sarasola")
+        
+        # Add a short comment about the application, this appears below
+        # the applicationname in the dialog
         about.set_comments("Electoral Calculator can calculate seat distributions using\nHighest averages methods (D'hondt, Sainte-Laguë, Modified Sainte-Laguë, Imperialli)\nand Largest remainder methods (Hare quota, Droop quota)")
+        
+        # Add license information, this is connected to the 'License' button
+        # and is displayed in a new window.
+        try:
+            license_file = open("COPYING", "r")
+            about.set_license(license_file.read())
+            license_file.close()
+        except IOError:
+            self.set_license("License file is missing")
+        
+        # Set the URL to use for the website link
         about.set_website("https://launchpad.net/electoralcalculator")
+        
+        # Set the logo of the application
         #about.set_logo(Gdk.pixbuf_new_from_file("election.jpeg"))
+        
+        # Show the dialog
         about.run()
+        
+        # The destroy method must be called otherwise
+        # the close button will not work
         about.destroy()
     
 def main():
