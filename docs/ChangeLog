@@ -28,6 +28,8 @@
             
             * Create a new file (calculations.py) for the functions used to calculate the results
 
+            * Added some doctests for the d'Hondt, Sainte-Laguë, and modified Sainte-Laguë methods
+
     * 0.5.2
 
         * Fixed bugs:

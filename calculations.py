@@ -140,7 +140,7 @@ def calculateHighestAverage(votes, numSeats, method, threshold, votePercentages)
         # The party that got the last seat needs 0 votes to get the last vote
         if party == seatTo:
             nextSeat[party] = 0
-            print "*************", party, nextSeat[party], "************************"
+            #print "*************", party, nextSeat[party], "************************"
         # The rest of parties need to get a bigger quot than the party that got the last seat
         else:
             nextSeat[party] = int(ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party]) + 1# The difference between the votes needed to get the last seat minus the actual votes plus 1
