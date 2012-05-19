@@ -2,7 +2,8 @@
 *   BUGS    *                
 *************
 
-    * It's D'Hondt not d'Hondt. Source: http://en.wikipedia.org/wiki/Talk:D%27Hondt_method#Capitalization.3F
+    * FIXED 2012-05-20
+      It's D'Hondt not d'Hondt. Source: http://en.wikipedia.org/wiki/Talk:D%27Hondt_method#Capitalization.3F
         
     * When two or more parties have the same amount of votes the calculus is not correct:
 
@@ -93,7 +94,7 @@
 
     * Add options window:
 
-        * D'hondt method:
+        * D'Hondt method:
 
             * Threshold calculus: votes[party]/totalVotes or votes[party]/validVotes
 

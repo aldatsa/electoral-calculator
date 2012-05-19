@@ -26,7 +26,7 @@ class infoWindow(Gtk.Window):
     def __init__(self):        
     
         # Calculation method
-        self.method = "D'hondt"
+        self.method = Methods.DHONDT
         
         # Create new GtkBuilder object
         self.builder = Gtk.Builder()
@@ -50,23 +50,22 @@ class infoWindow(Gtk.Window):
         self.infoWindow.show()
                 
     def on_rbtnDhondt_toggled(self, widget):
-        self.method = "D'hondt"    
+        self.method = Methods.DHONDT
         
     def on_rbtnSainteLague_toggled(self, widget):
-        self.method = "Sainte-Laguë"
+        self.method = Methods.SAINTE_LAGUE
 
     def on_rbtnModifiedSainteLague_toggled(self, widget):
-        self.method = "Modified Sainte-Laguë"
+        self.method = Methods.MODIFIED_SAINTE_LAGUE
 
     def on_rbtnImperiali_toggled(self, widget):
-        self.method = "Imperiali" 
+        self.method = Methods.IMPERIALI
 
     def on_rbtnHareQuota_toggled(self, widget):
-        self.method = "Hare Quota"
+        self.method = Methods.HARE_QUOTA
 
     def on_rbtnDroopQuota_toggled(self, widget):
-        self.method = "Droop Quota"
+        self.method = Methods.DROOP_QUOTA
 
     def on_infoWindow_quit(self, widget):
         self.infoWindow.destroy()
-        

@@ -44,7 +44,7 @@
                                 <property name="layout_style">start</property>
                                 <child>
                                   <object class="GtkRadioButton" id="rbtnDhondt">
-                                    <property name="label" translatable="yes">D'hondt</property>
+                                    <property name="label" translatable="yes">D'Hondt</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>

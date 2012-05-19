@@ -22,17 +22,17 @@ from calculations import *
 
 def calculateHighestAverage_doctest():
     """
-    d'Hondt method
+    D'Hondt method
     Example from http://en.wikipedia.org/wiki/D%27Hondt_method#Allocation
     >>> calculateHighestAverage({'a':100000, 'b':80000, 'c':30000, 'd':20000}, 8, Methods.DHONDT, 0, {'a':43.48, 'b':34.78, 'c':13.04, 'd':8.70})[0] == {'a': 4,'b': 3,'c': 1,'d': 0}
     True
     
-    d'Hondt method
+    D'Hondt method
     Example from http://en.wikipedia.org/wiki/Highest_averages_method#Comparison_between_the_d.27Hondt_and_Sainte-Lagu.C3.AB_methods
     >>> calculateHighestAverage({'Yellow':47000, 'White':16000, 'Red':15900, 'Green':12000, 'Blue':6000, 'Pink':3100}, 10, Methods.DHONDT, 0, {'Yellow':47.00, 'White':16.00, 'Red':15.90, 'Green':12.00, 'Blue':6.00, 'Pink':3.10})[0] == {'Yellow': 5, 'White': 2, 'Red': 2, 'Green': 1, 'Blue': 0, 'Pink': 0}
     True
 
-    d'Hondt method
+    D'Hondt method
     Example from http://en.wikipedia.org/wiki/Talk:Highest_averages_method
     >>> calculateHighestAverage({'MA':6349, 'CT':3405, 'ME':1274, 'NH':1235, 'RI':1048, 'VT':608}, 8, Methods.DHONDT, 0, {'MA':45.61, 'CT':24.46, 'ME':9.15, 'NH':8.87, 'RI':7.53, 'VT':4.37})[0] == {'MA':5, 'CT':2, 'ME':1, 'NH':0, 'RI':0, 'VT':0}
     True

@@ -28,14 +28,16 @@
             
             * Create a new file (calculations.py) for the functions used to calculate the results
 
-            * Added some doctests for the d'Hondt, Sainte-Laguë, and modified Sainte-Laguë methods
+            * Added some doctests for the D'Hondt, Sainte-Laguë, and modified Sainte-Laguë methods
 
             * Create a enum like class to identify the different calculation methods and adapt the code to use them
             
             * Improved about dialog
             
             * Add AUTHORS file
-e
+
+            * Use D'Hondt instead of d'Hondt
+
     * 0.5.2
 
         * Fixed bugs:

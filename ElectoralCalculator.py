@@ -339,7 +339,7 @@ class pydhondt(Gtk.Window):
         self.tvwCandidaturesTreeIter = treeiter
         
     def on_rbtnDhondt_toggled(self, widget):
-        self.method = "D'hondt"    
+        self.method = Methods.DHONDT
     
     def on_rbtnSainteLague_toggled(self, widget):
         self.method = Methods.SAINTE_LAGUE
@@ -388,7 +388,7 @@ class pydhondt(Gtk.Window):
         
         # Add a short comment about the application, this appears below
         # the applicationname in the dialog
-        about.set_comments("Electoral Calculator can calculate seat distributions using\nHighest averages methods (D'hondt, Sainte-Laguë, Modified Sainte-Laguë, Imperialli)\nand Largest remainder methods (Hare quota, Droop quota)")
+        about.set_comments("Electoral Calculator can calculate seat distributions using\nHighest averages methods (D'Hondt, Sainte-Laguë, Modified Sainte-Laguë, Imperialli)\nand Largest remainder methods (Hare quota, Droop quota)")
         
         # Add license information, this is connected to the 'License' button
         # and is displayed in a new window.
