@@ -20,6 +20,7 @@
 
 from math import ceil
 from math import floor
+from Methods import Methods
 
 def calculateTotalVotes(votes, blankVotes=0, nullVotes=0):
     totalVotes = 0
@@ -57,16 +58,16 @@ def calculateSeatPercentages(numSeats, seats):
     return seatPercentages
             
 def getDivisor(numSeats, method, MSLFD=1.4):
-    if method == "D'hondt":
+    if method == Methods.DHONDT:
         return numSeats + 1
-    elif method == "Sainte-Laguë":
+    elif method == Methods.SAINTE_LAGUE:
         return 2 * numSeats + 1
-    elif method == "Modified Sainte-Laguë":
+    elif method == Methods.MODIFIED_SAINTE_LAGUE:
         if numSeats == 0:
             return MSLFD
         else:
             return 2 * numSeats + 1
-    elif method == "Imperiali": # The divisors are 2,3,4 etc
+    elif method == Methods.IMPERIALI: # The divisors are 2,3,4 etc
         return numSeats + 2
     else:
         print "ERROR: Unknown method"
@@ -78,9 +79,9 @@ def calculateLargestRemainder(votes, numSeats, method, threshold, votePercentage
     remainder = {}
     results = {}
     
-    if method == "Hare Quota":
+    if method == Methods.HARE_QUOTA:
         quota = validVotes / numSeats # Integer or float???
-    elif method == "Droop Quota":
+    elif method == Methods.DROOP_QUOTA:
         quota = 1 + (validVotes / (1 + numSeats))
 
     #print quota

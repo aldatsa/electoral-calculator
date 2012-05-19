@@ -26,6 +26,7 @@ from collections import defaultdict
 from infoWindow import infoWindow
 
 from calculations import *
+from Methods import Methods
 
 def isListStoreEmpty(listStore):
     # get_iter_first() returns a Gtk.TreeIter instance pointing to the first iterator in the tree (the one at the path “0”) or None if the tree is empty.
@@ -39,7 +40,7 @@ class pydhondt(Gtk.Window):
     def __init__(self):
 
         # Calculation method
-        self.method = "D'hondt"
+        self.method = Methods.DHONDT
         
         # Votes for each party
         self.votes = {}        
@@ -244,9 +245,9 @@ class pydhondt(Gtk.Window):
         else:
             self.lblAbstention.set_text("Abstention: N/A")
         
-        if self.method in ("D'hondt", "Sainte-Laguë", "Modified Sainte-Laguë", "Imperiali"):
+        if self.method in (Methods.DHONDT, Methods.SAINTE_LAGUE, Methods.MODIFIED_SAINTE_LAGUE, Methods.IMPERIALI):
             (results, nextSeat) = calculateHighestAverage(self.votes, numSeats, self.method, threshold, votePercentages)
-        elif self.method in ("Hare Quota", "Droop Quota"):
+        elif self.method in (Methods.HARE_QUOTA, Methods.DROOP_QUOTA):
             results = calculateLargestRemainder(self.votes, numSeats, self.method, threshold, votePercentages, validVotes)
             for party in results:
                 nextSeat[party] = "-"
@@ -341,19 +342,19 @@ class pydhondt(Gtk.Window):
         self.method = "D'hondt"    
     
     def on_rbtnSainteLague_toggled(self, widget):
-        self.method = "Sainte-Laguë"
+        self.method = Methods.SAINTE_LAGUE
         
     def on_rbtnModifiedSainteLague_toggled(self, widget):
-        self.method = "Modified Sainte-Laguë"
+        self.method = Methods.MODIFIED_SAINTE_LAGUE
     
     def on_rbtnImperiali_toggled(self, widget):
-        self.method = "Imperiali"
+        self.method = Methods.IMPERIALI
         
     def on_rbtnHareQuota_toggled(self, widget):
-        self.method = "Hare Quota"
+        self.method = Methods.HARE_QUOTA
     
     def on_rbtnDroopQuota_toggled(self, widget):
-        self.method = "Droop Quota"
+        self.method = Methods.DROOP_QUOTA
     
     def on_mainWindow_quit(self, widget):
         Gtk.main_quit()
