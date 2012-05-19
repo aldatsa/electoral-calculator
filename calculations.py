@@ -94,7 +94,7 @@ def calculateLargestRemainder(votes, numSeats, method, threshold, votePercentage
 
     #sorted_remainder = sorted(remainder.iteritems(), key=(operator.itemgetter(1))
     for party in sorted(remainder, key=remainder.get, reverse=True):
-        print party, remainder[party]
+        #print party, remainder[party]
         if tempSeats < numSeats:
             results[party] = results[party] + 1
             tempSeats = tempSeats + 1

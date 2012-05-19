@@ -2,6 +2,8 @@
 *   BUGS    *                
 *************
 
+    * It's D'Hondt not d'Hondt. Source: http://en.wikipedia.org/wiki/Talk:D%27Hondt_method#Capitalization.3F
+        
     * When two or more parties have the same amount of votes the calculus is not correct:
 
         * a: 1000 and b: 1000 -> a: 1 and b: 0 INCORRECT (2 seats) (my app, http://icon.cat/util/elections and http://www.calculoescanos.com/)
@@ -102,6 +104,8 @@
         * Highest averages methods: http://en.wikipedia.org/wiki/Highest_averages_method
 
             * IMPLEMENTED 0.5.0 - Sainte-Laguë method: http://en.wikipedia.org/wiki/Sainte-Lagu%C3%AB_method and Modified Sainte-Laguë
+            
+            * Huntington-Hill method: http://en.wikipedia.org/wiki/Huntington-Hill_method
 
         * Largest remainder methods:
 
