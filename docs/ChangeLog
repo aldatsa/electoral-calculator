@@ -33,6 +33,8 @@
             * Create a enum like class to identify the different calculation methods and adapt the code to use them
             
             * Improved about dialog
+            
+            * Add AUTHORS file
 e
     * 0.5.2
 
