@@ -38,6 +38,10 @@
 
             * Use D'Hondt instead of d'Hondt
 
+            * Improve the calculations to get the votes needed to obtain the last seat and create some doctests.
+            
+            * Include the buttons related to the list of candidatures inside the frame of the candidatures
+
     * 0.5.2
 
         * Fixed bugs:
