@@ -17,6 +17,10 @@
             * 2012-05-14 Adding a candidature after deleting all the candidatures using "Clear" (btnClear) throws an error
 
             * 2012-05-18 Fix error that happens when using the imperiali method
+            
+            * 2012-05-20 Use D'Hondt instead of d'Hondt
+            
+            * 2012-05-23 Improve the calculations to get the votes needed to obtain the last seat and create some doctests.
 
         * New features:
 
@@ -35,12 +39,8 @@
             * Improved about dialog
             
             * Add AUTHORS file
-
-            * Use D'Hondt instead of d'Hondt
-
-            * Improve the calculations to get the votes needed to obtain the last seat and create some doctests.
             
-            * Include the buttons related to the list of candidatures inside the frame of the candidatures
+            * Move the 3 buttons related to the list of candidatures inside the frame of the candidatures
 
     * 0.5.2
 
