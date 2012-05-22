@@ -9,8 +9,9 @@
 
         * a: 1000 and b: 1000 -> a: 1 and b: 0 INCORRECT (2 seats) (my app, http://icon.cat/util/elections and http://www.calculoescanos.com/)
           See Improvements.
-          
-    * The calculus to get the votes needed to obtain the last seat are not correct:
+
+    * FIXED 2012-05-22
+      The calculus to get the votes needed to obtain the last seat are not correct (D'Hondt method):
 
         * a 1000    b 500   -> a: 2 ; b: 0 (2 seats)
            votes to last seat: a: 0 ; b: 1 CORRECT (my app and http://icon.cat/util/elections)
@@ -19,6 +20,25 @@
         * a 1000    b 501   -> a: 1 ; b: 1 (2 seats)
            votes to last seat: a: 3 ; b: 0 INCORRECT (my app and http://icon.cat/util/elections)
                   it should be a: 2 ; b: 0 CORRECT (http://www.calculoescanos.com)
+           after the first fix a: 2 ; b: 0 CORRECT 2012-05-22
+
+        * a 1000    b 500   -> a: 1 ; b: 0 (1 seat)
+           votes to last seat: a: 0 ; b: 500 INCORRECT ??? Is it enough to draw?
+                it should be   a: 0 ; b: 501 I think that the correct answer is 501, as it's the votes needed to be sure that this party wins the next seat.
+           after the 2nd fix   a: 0 ; b: 501 CORRECT 2012-05-22
+           
+        * a 1000    b 500   c 333 -> a: 2 ; b: 0; c: 0 (2 seats)
+            votes to last seat: a: 0 ; b: 1; c: 167 INCORRECT
+                it should be    a: 0 ; b: 1; c: 168
+            after the 3rd fix   a: 0 ; b: 1; c: 168 CORRECT 2012-05-22
+
+        * a 1000    b 500   c 333 -> a: 2 ; b: 1; c: 0 (3 seats)
+            votes to last seat: a: 500 ; b: 0; c: 168 CORRECT ???
+            c: 167 -> 333 + 167 -> 500 Draw with b. But I think 168 is correct as it's the votes needed to be sure that this party wins the next seat.
+
+        * ...
+        
+        * What about the other methods?
 
     * FIXED 2012-05-18
       2012-05-18 Error that happens when using the imperiali method
@@ -98,7 +118,7 @@
 
             * Threshold calculus: votes[party]/totalVotes or votes[party]/validVotes
 
-            * Votes percent: votes[party]/totalVotes or votes[party]/validVotes
+            * Votes percent: votes[party]/totalVotes or votes[party]/validVotes or both
             
     * Add more calculation methods (check wikipedia):
 

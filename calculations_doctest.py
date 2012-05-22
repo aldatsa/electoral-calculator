@@ -37,6 +37,11 @@ def calculateHighestAverage_doctest():
     >>> calculateHighestAverage({'MA':6349, 'CT':3405, 'ME':1274, 'NH':1235, 'RI':1048, 'VT':608}, 8, Methods.DHONDT, 0, {'MA':45.61, 'CT':24.46, 'ME':9.15, 'NH':8.87, 'RI':7.53, 'VT':4.37})[0] == {'MA':5, 'CT':2, 'ME':1, 'NH':0, 'RI':0, 'VT':0}
     True
 
+    D'Hondt method
+    Example from http://news.bbc.co.uk/dna/place-lancashire/plain/A2757873:
+    >>> calculateHighestAverage({'One':270, 'Two':100, 'Three':80, 'Four':70, 'Five':10}, 6, Methods.DHONDT, 0, {'One':50.94, 'Two':18.87, 'Three':15.09, 'Four':13.21, 'Five':1.89})[0] == {'One':3, 'Two':1, 'Three':1, 'Four':1, 'Five':0}
+    True
+        
     Sainte-Laguë method (unmodified)
     Example from http://en.wikipedia.org/wiki/Highest_averages_method#Comparison_between_the_d.27Hondt_and_Sainte-Lagu.C3.AB_methods
     >>> calculateHighestAverage({'Yellow':47000, 'White':16000, 'Red':15900, 'Green':12000, 'Blue':6000, 'Pink':3100}, 10, Methods.SAINTE_LAGUE, 0, {'Yellow':47.00, 'White':16.00, 'Red':15.90, 'Green':12.00, 'Blue':6.00, 'Pink':3.10})[0] == {'Yellow': 4, 'White': 2, 'Red': 2, 'Green': 1, 'Blue': 1, 'Pink': 0}
@@ -56,6 +61,55 @@ def calculateHighestAverage_doctest():
     Example from http://en.wikipedia.org/wiki/Highest_averages_method#Comparison_between_the_d.27Hondt_and_Sainte-Lagu.C3.AB_methods
     >>> calculateHighestAverage({'Yellow':47000, 'White':16000, 'Red':15900, 'Green':12000, 'Blue':6000, 'Pink':3100}, 10, Methods.MODIFIED_SAINTE_LAGUE, 0, {'Yellow':47.00, 'White':16.00, 'Red':15.90, 'Green':12.00, 'Blue':6.00, 'Pink':3.10})[0] == {'Yellow': 5, 'White': 2, 'Red': 2, 'Green': 1, 'Blue': 0, 'Pink': 0}
     True
+    
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500}, 2, Methods.DHONDT, 0, {'a':66.66, 'b':33.33})[1] == {'a':0, 'b':1}
+    True
+
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':500, 'b':1000}, 2, Methods.DHONDT, 0, {'a':33.33, 'b':66.66})[1] == {'a':1, 'b':0}
+    True
+
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':501, 'b':1000}, 2, Methods.DHONDT, 0, {'a':33.38, 'b':66.62})[1] == {'a':0, 'b':2}
+    True
+    
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':501}, 2, Methods.DHONDT, 0, {'a':66.62, 'b':33.38})[1] == {'a':2, 'b':0}
+    True
+    
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500}, 1, Methods.DHONDT, 0, {'a':66.66, 'b':33.33})[1] == {'a':0, 'b':501}
+    True
+
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':500, 'b':1000}, 1, Methods.DHONDT, 0, {'a':33.33, 'b':66.66})[1] == {'a':501, 'b':0}
+    True
+    
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500, 'c':333}, 2, Methods.DHONDT, 0, {'a':54.55, 'b':27.28, 'c':18.17})[1] == {'a':0, 'b':1, 'c':168}
+    True
+    
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500, 'c':333}, 3, Methods.DHONDT, 0, {'a':54.55, 'b':27.28, 'c':18.17})[1] == {'a':500, 'b':0, 'c':168}
+    True
+    
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500, 'c':333}, 4, Methods.DHONDT, 0, {'a':54.55, 'b':27.28, 'c':18.17})[1] == {'a':0, 'b':167, 'c':1}
+    True
+
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500, 'c':333}, 5, Methods.DHONDT, 0, {'a':54.55, 'b':27.28, 'c':18.17})[1] == {'a':332, 'b':166, 'c':0}
+    True
+
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500, 'c':333}, 6, Methods.DHONDT, 0, {'a':54.55, 'b':27.28, 'c':18.17})[1] == {'a':0, 'b':1, 'c':168}
+    True
+
+    Votes to get the last seat: D'Hondt method
+    >>> calculateHighestAverage({'a':1000, 'b':500, 'c':333}, 7, Methods.DHONDT, 0, {'a':54.55, 'b':27.28, 'c':18.17})[1] == {'a':250, 'b':0, 'c':168}
+    True
+
     """
 
 def calculateLargestRemainder_doctest():

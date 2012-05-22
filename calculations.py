@@ -120,7 +120,7 @@ def calculateHighestAverage(votes, numSeats, method, threshold, votePercentages)
         for party in votes:
             if votePercentages[party] > threshold:
                 quot = float(votes[party])/getDivisor(results[party], method) # Calculate the quot for this party in this round
-                #print party, results[party], quot
+
                 if quot > highest:  # If the quot is bigger than the highest value in this round:
                     seatTo = party  # the party becomes the candidate to get this seat
                     highest = quot  # save the quot to check it with the values for the rest of parties
@@ -134,21 +134,14 @@ def calculateHighestAverage(votes, numSeats, method, threshold, votePercentages)
                     
         # The party with the highest quot gets another seat
         results[seatTo] = results[seatTo] + 1
-        #print "----"
-            
-    #print "Last seat to:", seatTo
+
     for party in votes:
         # The party that got the last seat needs 0 votes to get the last vote
         if party == seatTo:
             nextSeat[party] = 0
-            #print "*************", party, nextSeat[party], "************************"
         # The rest of parties need to get a bigger quot than the party that got the last seat
         else:
-            nextSeat[party] = int(ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party]) + 1# The difference between the votes needed to get the last seat minus the actual votes plus 1
-            #print "lastQuot[seatTo]", lastQuot[seatTo], "getDivisor(results[party], method)", getDivisor(results[party], method)
-            #print "ceil(lastQuot[seatTo] * getDivisor(results[party], method)", ceil(lastQuot[seatTo] * getDivisor(results[party], method))
-            #print "ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party]", ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party]
-            #print "int(ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party])", int(ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party])
-            #print "+++++++++++++", party, nextSeat[party], "++++++++++++++++++++++++++"
+            nextSeat[party] = int(ceil(lastQuot[seatTo] * getDivisor(results[party], method)) - votes[party])
+            if lastQuot[seatTo] == votes[party] + nextSeat[party] or (lastQuot[seatTo] == (votes[party] + nextSeat[party]) / getDivisor(results[party], method) and votes[seatTo] > votes[party]):
+                nextSeat[party] += 1
     return results, nextSeat
-
