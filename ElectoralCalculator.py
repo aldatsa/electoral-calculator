@@ -24,6 +24,7 @@ from gi.repository import Gtk
 from collections import defaultdict
 
 from infoWindow import infoWindow
+from partyEditor import partyEditor
 
 from calculations import *
 from Methods import Methods
@@ -278,8 +279,7 @@ class pydhondt(Gtk.Window):
             if self.txtParty.get_text() == "":
                 self.show_info_message(self, "The name of the party can't be empty")
                 self.txtParty.grab_focus()
-                return 1
-                
+                return 1             
             else:
                 self.show_info_message(self, "The number of votes must be an integer value")
                 self.txtVotes.set_text("")
@@ -298,9 +298,17 @@ class pydhondt(Gtk.Window):
 
         self.txtParty.grab_focus()
     
+    def setTreeElement(self, partyName, partyVotes, treeIter):
+        self.tvwCandidaturesModel[treeIter][0] = partyName
+        self.tvwCandidaturesModel[treeIter][1] = partyVotes
+
     def on_btnEditSelection_clicked(self, widget):
-        print "Not implemented yet"    
-    
+        try:
+            PartyEditor = partyEditor(self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0], self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][1], self.setTreeElement, self.tvwCandidaturesTreeIter)
+            PartyEditor.run()
+        except:
+            self.show_info_message(self, "You have to select a candidature first")
+
     def on_btnDeleteSelection_clicked(self, widget):
         try:
             msgDlg = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.YES_NO, "Do you want to delete the party " + self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0] + "?")
