@@ -273,18 +273,19 @@ class pydhondt(Gtk.Window):
         self.txtParty.grab_focus()
     
     def on_btnAddCandidature_clicked(self, widget):
+        # The name of the party can't be a empty string
+        if self.txtParty.get_text() == "":
+            self.show_info_message(self, "The name of the party can't be empty")
+            self.txtParty.grab_focus()
+            return 1
+
         try:
             self.votes[self.txtParty.get_text()] = int(self.txtVotes.get_text())
         except:
-            if self.txtParty.get_text() == "":
-                self.show_info_message(self, "The name of the party can't be empty")
-                self.txtParty.grab_focus()
-                return 1             
-            else:
-                self.show_info_message(self, "The number of votes must be an integer value")
-                self.txtVotes.set_text("")
-                self.txtVotes.grab_focus()
-                return 1
+            self.show_info_message(self, "The number of votes must be an integer value")
+            self.txtVotes.set_text("")
+            self.txtVotes.grab_focus()
+            return 1
 
         # If this candidature is the first one, delete the "-" from the liststore
         if self.listStoreCandidatures[0][0] == "-":

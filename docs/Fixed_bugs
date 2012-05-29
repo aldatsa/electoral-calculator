@@ -2,6 +2,27 @@
 *   FIXED BUGS    *                
 *******************
 
+    * FIXED 2012-05-29
+      Avoid the possibility of adding a candidature with a empty name to the candidature list
+      
+        * The problem is here:
+            try:
+               self.votes[self.txtParty.get_text()] = int(self.txtVotes.get_text())
+            except:
+                if self.txtParty.get_text() == "":
+                    self.show_info_message(self, "The name of the party can't be empty")
+                    self.txtParty.grab_focus()
+                    return 1             
+                else:
+                    self.show_info_message(self, "The number of votes must be an integer value")
+                    self.txtVotes.set_text("")
+                    self.txtVotes.grab_focus()
+                    return 1
+          
+          The dictionary accepts empty key values, so doesn't throw an exception.
+
+        * Solution: Move the code that checks if the name of the party is empty out of the exception handler.
+
     * FIXED 2012-05-23
       The calculus to get the votes needed to obtain the last seat are not correct (D'Hondt method):
 

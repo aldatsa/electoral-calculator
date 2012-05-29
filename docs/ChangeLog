@@ -22,25 +22,29 @@
             
             * 2012-05-23 Improve the calculations to get the votes needed to obtain the last seat and create some doctests.
 
+            * 2012-05-29 Avoid the possibility of adding a candidature with a empty name to the candidature list
+
         * New features:
 
             * Added two largest remainder methods: Hare quota and droop quota.
 
-            * Add title to the main window: Electoral Calculator
+            * Added title to the main window: Electoral Calculator
             
             * Show the main window maximized by default
             
-            * Create a new file (calculations.py) for the functions used to calculate the results
+            * Created a new file (calculations.py) for the functions used to calculate the results
 
             * Added some doctests for the D'Hondt, Sainte-Laguë, and modified Sainte-Laguë methods
 
-            * Create a enum like class to identify the different calculation methods and adapt the code to use them
+            * Created a enum like class to identify the different calculation methods and adapt the code to use them
             
             * Improved about dialog
             
-            * Add AUTHORS file
+            * Added AUTHORS file
             
-            * Move the 3 buttons related to the list of candidatures inside the frame of the candidatures
+            * Moved the 3 buttons related to the list of candidatures inside the frame of the candidatures
+
+            * Added new form to edit candidatures (name and number of votes)
 
     * 0.5.2
 
