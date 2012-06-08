@@ -21,6 +21,7 @@
 
 from gi.repository import Gtk
 
+
 class infoWindow(Gtk.Window):
 
     def __init__(self):        

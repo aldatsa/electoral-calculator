@@ -19,15 +19,15 @@
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from gi.repository import Gtk
-
 from collections import defaultdict
+
+from gi.repository import Gtk
 
 from infoWindow import infoWindow
 from partyEditor import partyEditor
-
 from calculations import *
 from Methods import Methods
+
 
 def isListStoreEmpty(listStore):
     # get_iter_first() returns a Gtk.TreeIter instance pointing to the first iterator in the tree (the one at the path “0”) or None if the tree is empty.

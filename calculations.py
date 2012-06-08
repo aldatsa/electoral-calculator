@@ -18,9 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-from math import ceil
-from math import floor
+
+from math import ceil, floor
+
 from Methods import Methods
+
 
 def calculateTotalVotes(votes, blankVotes=0, nullVotes=0):
     totalVotes = 0

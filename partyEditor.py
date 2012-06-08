@@ -21,6 +21,7 @@
 
 from gi.repository import Gtk
 
+
 class partyEditor():
 
     def __init__(self, party, votes, function, treeIter):
