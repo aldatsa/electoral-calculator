@@ -26,10 +26,13 @@ class partyEditor():
 
     def __init__(self, party, votes, function, treeIter):
         
-        # The function used to update the values of the liststore tvwCandidatures from the main window (ElectoralCalculator.py)
+        # The function used to update the values of the liststore
+        # tvwCandidatures from the main window (ElectoralCalculator.py)
         self.setTreeElement = function
         
-        # The tree iterator that points to the currently selected item in the liststore tvwCandidatures from the main window (ElectoralCalculator.py)
+        # The tree iterator that points to the currently selected item
+        # in the liststore tvwCandidatures from the main window
+        # (ElectoralCalculator.py)
         self.treeIter = treeIter
 
         # Create new GtkBuilder object
@@ -44,20 +47,23 @@ class partyEditor():
         # Get the info window pointer from UI
         self.partyEditor = self.builder.get_object("partyEditor")
         
-        # Connect the delete event to the function delete_event to destroy the window
+        # Connect the delete event to the function delete_event
+        # to destroy the partyEditor window
         self.partyEditor.connect('delete-event', self.delete_event)
         
         # Get txtVotes from the UI
         self.txtParty = self.builder.get_object("txtParty")
 
-        # Set in the entry object txtParty the name of the party passed in to this window
+        # Set in the entry object txtParty the name of the party
+        # passed in to this window
         self.txtParty.set_text(party)
         self.txtParty.grab_focus()
 
         # Get txtVotes from the UI
         self.txtVotes = self.builder.get_object("txtVotes")
 
-        # Set in the entry object txtVotes the nunmber of votes of the party passed in to this window
+        # Set in the entry object txtVotes the nunmber of votes of
+        # the party passed in to this window
         self.txtVotes.set_text(votes)
 
         # Destroy builder, since we don't need it anymore
@@ -77,9 +83,12 @@ class partyEditor():
         return False
 
     def on_btnAccept_clicked(self, widget):
-        # Update the list store tvwCandidatures from the main window (ElectoralCalculator.py)
-        self.setTreeElement(self.txtParty.get_text(), self.txtVotes.get_text(), self.treeIter)
-            
+        # Update the list store tvwCandidatures from the main window
+        # (ElectoralCalculator.py)
+        self.setTreeElement(self.txtParty.get_text(),
+                            self.txtVotes.get_text(),
+                            self.treeIter)
+
         # Destroy the window
         self.partyEditor.destroy()
 
