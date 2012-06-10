@@ -205,6 +205,14 @@ class pydhondt(Gtk.Window):
         nextSeat = {}
         seatPercentages = {}
 
+        # Check if the list of parties is empty
+        if (isListStoreEmpty(self.listStoreCandidatures) == True or
+        self.listStoreCandidatures[0][0] == '-'):
+            msgText = ("There are no candidatures")
+            self.show_info_message(self, msgText)
+            self.txtParty.grab_focus()
+            return 1
+
         try:
             numSeats = int(self.txtSeats.get_text())
         except:

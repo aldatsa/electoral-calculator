@@ -24,6 +24,8 @@
 
             * 2012-05-29 Avoid the possibility of adding a candidature with a empty name to the candidature list
 
+            * 2012-06-10 Error when btnCalculate is pressed with no parties in the list
+
         * New features:
 
             * Added two largest remainder methods: Hare quota and droop quota.
@@ -45,6 +47,8 @@
             * Moved the 3 buttons related to the list of candidatures inside the frame of the candidatures
 
             * Added new form to edit candidatures (name and number of votes)
+
+            * 2012-06-10 Adapted files to follow PEP8
 
     * 0.5.2
 
