@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright 2012 Asier Iturralde Sarasola 
+# Copyright 2012 Asier Iturralde Sarasola
 #
 # This file is part of Electoral Calculator.
 #
@@ -24,35 +24,35 @@ from gi.repository import Gtk
 
 class infoWindow(Gtk.Window):
 
-    def __init__(self):        
-    
+    def __init__(self):
+
         # Calculation method
         self.method = Methods.DHONDT
-        
+
         # Create new GtkBuilder object
         self.builder = Gtk.Builder()
-        
+
         # Load UI from file
         self.builder.add_from_file("infoWindow.glade")
-        
+
         # Connect signal
         self.builder.connect_signals(self)
-        
+
         # Get the info window pointer from UI
         self.infoWindow = self.builder.get_object("infoWindow")
-        
+
         # Get lblInfo from UI
         self.lblInfo = self.builder.get_object("lblInfo")
-        
+
         # Destroy builder, since we don't need it anymore
         del(self.builder)
 
         # Show window. All other widgets are automatically shown by GtkBuilder
         self.infoWindow.show()
-                
+
     def on_rbtnDhondt_toggled(self, widget):
         self.method = Methods.DHONDT
-        
+
     def on_rbtnSainteLague_toggled(self, widget):
         self.method = Methods.SAINTE_LAGUE
 

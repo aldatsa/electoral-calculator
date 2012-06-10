@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright 2012 Asier Iturralde Sarasola 
+# Copyright 2012 Asier Iturralde Sarasola
 #
 # This file is part of Electoral Calculator.
 #
@@ -25,11 +25,11 @@ from gi.repository import Gtk
 class partyEditor():
 
     def __init__(self, party, votes, function, treeIter):
-        
+
         # The function used to update the values of the liststore
         # tvwCandidatures from the main window (ElectoralCalculator.py)
         self.setTreeElement = function
-        
+
         # The tree iterator that points to the currently selected item
         # in the liststore tvwCandidatures from the main window
         # (ElectoralCalculator.py)
@@ -37,20 +37,20 @@ class partyEditor():
 
         # Create new GtkBuilder object
         self.builder = Gtk.Builder()
-        
+
         # Load UI from file
         self.builder.add_from_file("partyEditor.glade")
-        
+
         # Connect signal
         self.builder.connect_signals(self)
-        
+
         # Get the info window pointer from UI
         self.partyEditor = self.builder.get_object("partyEditor")
-        
+
         # Connect the delete event to the function delete_event
         # to destroy the partyEditor window
         self.partyEditor.connect('delete-event', self.delete_event)
-        
+
         # Get txtVotes from the UI
         self.txtParty = self.builder.get_object("txtParty")
 
