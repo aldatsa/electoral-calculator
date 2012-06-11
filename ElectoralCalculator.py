@@ -38,6 +38,10 @@ def isListStoreEmpty(listStore):
         return True
     return False
 
+def areThereCandidatures(listStore):
+    if listStore[0][0] == '-':
+	return False
+    return True
 
 class pydhondt(Gtk.Window):
 
@@ -188,6 +192,10 @@ class pydhondt(Gtk.Window):
         msgDlg.run()
         msgDlg.destroy()
 
+    def showNoCandidaturesMsg(self):
+        msgText = "There are no candidatures"
+        self.show_info_message(self, msgText)
+
     def on_btnCalculate_clicked(self, widget):
 
         MSL_FirstDivisor = 1.4
@@ -207,9 +215,8 @@ class pydhondt(Gtk.Window):
 
         # Check if the list of parties is empty
         if (isListStoreEmpty(self.listStoreCandidatures) == True or
-        self.listStoreCandidatures[0][0] == '-'):
-            msgText = ("There are no candidatures")
-            self.show_info_message(self, msgText)
+        areThereCandidatures(self.listStoreCandidatures) == False):
+            self.showNoCandidaturesMsg()
             self.txtParty.grab_focus()
             return 1
 
@@ -356,12 +363,21 @@ class pydhondt(Gtk.Window):
         try:
             party = self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0]
             votes = self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][1]
+
+            if party == '-':
+                self.showNoCandidaturesMsg()
+                return 1
+
             PartyEditor = partyEditor(party,
                                       votes,
                                       self.setTreeElement,
                                       self.tvwCandidaturesTreeIter)
             PartyEditor.run()
         except:
+            if areThereCandidatures(self.listStoreCandidatures) == False:
+                self.showNoCandidaturesMsg()
+                return 1
+
             msgText = "You have to select a candidature first"
             self.show_info_message(self, msgText)
 

@@ -26,6 +26,8 @@
 
             * 2012-06-10 Error when btnCalculate is pressed with no parties in the list
 
+            * 2012-06-11 The editParty form shouldn't show when the line '-', '-' is selected
+
         * New features:
 
             * Added two largest remainder methods: Hare quota and droop quota.
