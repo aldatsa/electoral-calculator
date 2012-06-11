@@ -384,6 +384,11 @@ class pydhondt(Gtk.Window):
     def on_btnDeleteSelection_clicked(self, widget):
         try:
             party = self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0]
+
+            if party == '-':
+                self.showNoCandidaturesMsg()
+                return 1
+
             msgText = ("Do you want to delete the party " +
                       party +
                       "?")
@@ -402,6 +407,10 @@ class pydhondt(Gtk.Window):
                 # Delete the selected party from listStoreCandidatures
                 self.listStoreCandidatures.remove(self.tvwCandidaturesTreeIter)
         except:
+            if areThereCandidatures(self.listStoreCandidatures) == False:
+                self.showNoCandidaturesMsg()
+                return 1
+
             msgText = "You have to select a candidature first"
             self.show_info_message(self, msgText)
 

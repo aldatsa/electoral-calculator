@@ -7,8 +7,6 @@
         * a: 1000 and b: 1000 -> a: 1 and b: 0 INCORRECT (1 seat) (my app, http://icon.cat/util/elections and http://www.calculoescanos.com/)
           See Improvements.
 
-    * The message "Do you want to delete the party -?" shouldn't show when the line '-', '-' is selected
-
     * The message "Do you want to clear the list of candidatures?" shouldn't show when the line '-', '-' is selected
 
 ************************************************
