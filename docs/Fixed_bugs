@@ -3,6 +3,13 @@
 *******************
 
     * FIXED 2012-06-11
+      The message "Do you want to clear the list of candidatures?" shouldn't
+      show when the line '-', '-' is selected
+
+      Solution:
+        Create and use the functions areThereCandidatures() and showNoCandidaturesMsg()
+
+    * FIXED 2012-06-11
       The message "Do you want to delete the party -?" shouldn't show when the line '-', '-' is selected
 
       Solution:

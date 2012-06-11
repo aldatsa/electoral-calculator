@@ -32,6 +32,10 @@
             * 2012-06-11 The message "Do you want to delete the party -?"
                          shouldn't show when the line '-', '-' is selected
 
+            * 2012-06-11 The message "Do you want to clear the list of
+                         candidatures?" shouldn't show when the line
+                         '-', '-' is selected
+
         * New features:
 
             * Added two largest remainder methods: Hare quota and droop quota.

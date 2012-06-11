@@ -419,6 +419,10 @@ class pydhondt(Gtk.Window):
 
     def on_btnClear_clicked(self, widget):
         try:
+            if areThereCandidatures(self.listStoreCandidatures) == False:
+		self.showNoCandidaturesMsg()
+                return 1
+
             msgText = "Do you want to clear the list of candidatures?"
             msgDlg = Gtk.MessageDialog(self,
                                        0,
