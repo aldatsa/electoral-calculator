@@ -21,6 +21,7 @@
 
 from gi.repository import Gtk
 
+from Methods import Methods
 
 class infoWindow(Gtk.Window):
 
@@ -44,29 +45,45 @@ class infoWindow(Gtk.Window):
         # Get lblInfo from UI
         self.lblInfo = self.builder.get_object("lblInfo")
 
+        # Show info about the current method
+        self.show_info(self.method)
+
         # Destroy builder, since we don't need it anymore
         del(self.builder)
 
         # Show window. All other widgets are automatically shown by GtkBuilder
         self.infoWindow.show()
 
+        # Maximize the main window
+        self.infoWindow.maximize()
+
+    def show_info(self, method):
+        label_text = "<b>Selected method: " + str(method) + "</b>"
+        self.lblInfo.set_markup(label_text)
+
     def on_rbtnDhondt_toggled(self, widget):
         self.method = Methods.DHONDT
+        self.show_info(self.method)
 
     def on_rbtnSainteLague_toggled(self, widget):
         self.method = Methods.SAINTE_LAGUE
+        self.show_info(self.method)
 
     def on_rbtnModifiedSainteLague_toggled(self, widget):
         self.method = Methods.MODIFIED_SAINTE_LAGUE
+        self.show_info(self.method)
 
     def on_rbtnImperiali_toggled(self, widget):
         self.method = Methods.IMPERIALI
+        self.show_info(self.method)
 
     def on_rbtnHareQuota_toggled(self, widget):
         self.method = Methods.HARE_QUOTA
+        self.show_info(self.method)
 
     def on_rbtnDroopQuota_toggled(self, widget):
         self.method = Methods.DROOP_QUOTA
+        self.show_info(self.method)
 
     def on_infoWindow_quit(self, widget):
         self.infoWindow.destroy()
