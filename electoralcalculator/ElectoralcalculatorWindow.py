@@ -368,7 +368,10 @@ class ElectoralcalculatorWindow(Window):
             #                          votes,
             #                          self.setTreeElement,
             #                          self.tvwCandidaturesTreeIter)
-            PartyEditor = PartyeditorDialog()
+            try:
+                PartyEditor = PartyeditorDialog(party=party, votes=votes)
+            except Exception, e:
+                print "A exception occurred while creating PartyeditorDialog: " + str(e)
 
             response = PartyEditor.run()
 

@@ -14,7 +14,7 @@ gettext.textdomain('electoralcalculator')
 class PartyeditorDialog(Gtk.Dialog):
     __gtype_name__ = "PartyeditorDialog"
 
-    def __new__(cls):
+    def __new__(cls, **kwargs):
         """Special static method that's automatically called by Python when 
         constructing a new instance of this class.
         
@@ -22,10 +22,14 @@ class PartyeditorDialog(Gtk.Dialog):
         """
         builder = get_builder('PartyeditorDialog')
         new_object = builder.get_object('partyeditor_dialog')
-        new_object.finish_initializing(builder)
+        new_object.finish_initializing(builder, kwargs['party'], kwargs['votes'])
+        #for key in kwargs:
+        #    print "key: " + key + " -> arg: " + kwargs[key]
+        #print "party:" + kwargs['party']
+        #print "votes:" + kwargs['votes']
         return new_object
 
-    def finish_initializing(self, builder):
+    def finish_initializing(self, builder, party, votes):
         """Called when we're finished initializing.
 
         finish_initalizing should be called after parsing the ui definition
@@ -38,6 +42,8 @@ class PartyeditorDialog(Gtk.Dialog):
         self.ui = builder.get_ui(self)
         self.entryParty = builder.get_object("entryParty")
         self.entryVotes = builder.get_object("entryVotes")
+        self.entryParty.set_text(party)
+        self.entryVotes.set_text(votes)
 
     def on_btn_ok_clicked(self, widget, data=None):
         """The user has elected to save the changes.
