@@ -27,6 +27,7 @@ from electoralcalculator.AboutElectoralcalculatorDialog import AboutElectoralcal
 from electoralcalculator.PreferencesElectoralcalculatorDialog import PreferencesElectoralcalculatorDialog
 from electoralcalculator_lib.Methods import Methods
 from electoralcalculator_lib.calculations import *
+from electoralcalculator.PartyeditorDialog import PartyeditorDialog
 
 def isListStoreEmpty(listStore):
     # get_iter_first() returns a Gtk.TreeIter instance pointing to
@@ -363,11 +364,14 @@ class ElectoralcalculatorWindow(Window):
                 self.showNoCandidaturesMsg()
                 return 1
 
-            PartyEditor = partyEditor(party,
-                                      votes,
-                                      self.setTreeElement,
-                                      self.tvwCandidaturesTreeIter)
+            #PartyEditor = partyEditor(party,
+            #                          votes,
+            #                          self.setTreeElement,
+            #                          self.tvwCandidaturesTreeIter)
+            PartyEditor = PartyeditorDialog()
+            
             PartyEditor.run()
+            
         except:
             if areThereCandidatures(self.listStoreCandidatures) == False:
                 self.showNoCandidaturesMsg()
