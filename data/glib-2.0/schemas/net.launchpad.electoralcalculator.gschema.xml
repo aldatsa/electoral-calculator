@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="electoralcalculator">
+  <schema id="net.launchpad.electoralcalculator" path="/net/launchpad/electoralcalculator/">
+    <key name="example" type="s">
+      <default>''</default>
+      <summary>Sample setting</summary>
+      <description>Longer description of this sample setting.  Talk about allowed values and what it does.</description>
+    </key>
+  </schema>
+</schemalist>

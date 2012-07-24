@@ -19,7 +19,7 @@
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from calculations import *
+from electoralcalculator_lib.calculations import *
 
 
 def calculateHighestAverage_doctest():

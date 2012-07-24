@@ -1,33 +1,32 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
+### BEGIN LICENSE
+# Copyright (C) 2012 Asier Iturralde Sarasola <asier.iturralde@gmail.com>
+# This program is free software: you can redistribute it and/or modify it 
+# under the terms of the GNU General Public License version 3, as published 
+# by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranties of 
+# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR 
+# PURPOSE.  See the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along 
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+### END LICENSE
 
-# Copyright 2012 Asier Iturralde Sarasola
-#
-# This file is part of Electoral Calculator.
-#
-# Electoral Calculator is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Electoral Calculator is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+import gettext
+from gettext import gettext as _
+gettext.textdomain('electoralcalculator')
 
+from gi.repository import Gtk # pylint: disable=E0611
+import logging
+logger = logging.getLogger('electoralcalculator')
 
-from collections import defaultdict
-
-from gi.repository import Gtk
-
-from infoWindow import infoWindow
-from partyEditor import partyEditor
-from calculations import *
-from Methods import Methods
-
+from electoralcalculator_lib import Window
+from electoralcalculator.AboutElectoralcalculatorDialog import AboutElectoralcalculatorDialog
+from electoralcalculator.PreferencesElectoralcalculatorDialog import PreferencesElectoralcalculatorDialog
+from electoralcalculator_lib.Methods import Methods
+from electoralcalculator_lib.calculations import *
 
 def isListStoreEmpty(listStore):
     # get_iter_first() returns a Gtk.TreeIter instance pointing to
@@ -40,13 +39,23 @@ def isListStoreEmpty(listStore):
 
 def areThereCandidatures(listStore):
     if listStore[0][0] == '-':
-	return False
+        return False
     return True
 
-class pydhondt(Gtk.Window):
+# See electoralcalculator_lib.Window.py for more details about how this
+# class works
+class ElectoralcalculatorWindow(Window):
+    __gtype_name__ = "ElectoralcalculatorWindow"
+    
+    def finish_initializing(self, builder): # pylint: disable=E1002
+        """Set up the main window"""
+        super(ElectoralcalculatorWindow, self).finish_initializing(builder)
 
-    def __init__(self):
+        self.AboutDialog = AboutElectoralcalculatorDialog
+        self.PreferencesDialog = PreferencesElectoralcalculatorDialog
 
+        # Code for other initialization actions should be added here.
+        
         # Calculation method
         self.method = Methods.DHONDT
 
@@ -57,17 +66,8 @@ class pydhondt(Gtk.Window):
         self.tvwCandidaturesModel = None
         self.tvwCandidaturesTreeIter = None
 
-        # Create new GtkBuilder object
-        self.builder = Gtk.Builder()
-
-        # Load UI from file
-        self.builder.add_from_file("gui.glade")
-
-        # Connect signal
-        self.builder.connect_signals(self)
-
         # Get the main window pointer from UI
-        self.mainWindow = self.builder.get_object("mainWindow")
+        #self.mainWindow = self.builder.get_object("mainWindow")
 
         # Get txtSeats from the UI
         self.txtSeats = self.builder.get_object("txtSeats")
@@ -95,6 +95,9 @@ class pydhondt(Gtk.Window):
 
         # Get lblAbstention from the UI
         self.lblAbstention = self.builder.get_object("lblAbstention")
+
+        # Get the toolbar Open button from the UI
+        self.toolbuttonOpen = self.builder.get_object("toolbuttonOpen")
 
         # Destroy builder, since we don't need it anymore
         del(self.builder)
@@ -179,9 +182,9 @@ class pydhondt(Gtk.Window):
         self.lsvwResults.set_model(self.liststore)
 
         # Show window. All other widgets are automatically shown by GtkBuilder
-        self.mainWindow.show()
+        #self.mainWindow.show()
         # Maximize the main window
-        self.mainWindow.maximize()
+        #self.mainWindow.maximize()
 
     def show_info_message(self, widget, infoText):
         msgDlg = Gtk.MessageDialog(self,
@@ -304,7 +307,7 @@ class pydhondt(Gtk.Window):
         print nextSeat
         print "Total votes: ", totalVotes
         print "Valid votes: ", validVotes
-        #print "Abstention: " + str(abstention) +
+       #print "Abstention: " + str(abstention) +
         #" (" + str(abstentionPercentage) + "%)"
         print "Abstention: %d (%d%%)" % (abstention, abstentionPercentage)
         print votePercentages
@@ -420,7 +423,7 @@ class pydhondt(Gtk.Window):
     def on_btnClear_clicked(self, widget):
         try:
             if areThereCandidatures(self.listStoreCandidatures) == False:
-		self.showNoCandidaturesMsg()
+                self.showNoCandidaturesMsg()
                 return 1
 
             msgText = "Do you want to clear the list of candidatures?"
@@ -472,68 +475,6 @@ class pydhondt(Gtk.Window):
     def on_edit_copy_clicked(self, widget):
         print "Ezin dut asmatu nola egin!!!!!!!!!!!!!!!!!!!!!!!!!"
 
-    def on_help_info_methods_clicked(self, widget):
-        infoMethods = infoWindow()
-        #infoMethods.show()
-
-    def on_help_about_clicked(self, widget):
-        """ display the about box for ElectoralCalculator"""
-
-        # Create AboutDialog object
-        about = Gtk.AboutDialog()
-
-        # Add the application name to the dialog
-        about.set_program_name("Electoral Calculator")
-
-        # Set the application version
-        about.set_version("0.5.3")
-
-        # Pass a list of authors. This is then connected to the 'Credits'
-        # button. When clicked the button opens a new window showing
-        # each author on their own line.
-        about.set_authors(['Asier Iturralde Sarasola'])
-
-        # Set the copyright notice
-        about.set_copyright("© 2012 Asier Iturralde Sarasola")
-
-        # Add a short comment about the application, this appears below
-        # the applicationname in the dialog
-        about.set_comments("Electoral Calculator can calculate seat "
-                           "distributions using\nHighest averages methods "
-                           "(D'Hondt, Sainte-Laguë, Modified Sainte-Laguë, "
-                           "Imperialli)\nand Largest remainder methods "
-                           "(Hare quota, Droop quota)")
-
-        # Add license information, this is connected to the 'License' button
-        # and is displayed in a new window.
-        try:
-            license_file = open("COPYING", "r")
-            about.set_license(license_file.read())
-            license_file.close()
-        except IOError:
-            self.set_license("License file is missing")
-
-        # Set the URL to use for the website link
-        about.set_website("https://launchpad.net/electoralcalculator")
-
-        # Set the logo of the application
-        #about.set_logo(Gdk.pixbuf_new_from_file("election.jpeg"))
-
-        # Show the dialog
-        about.run()
-
-        # The destroy method must be called otherwise
-        # the close button will not work
-        about.destroy()
-
-
-def main():
-
-    # Create a new pydhondt object
-    dhondt = pydhondt()
-
-    # Start main loop
-    Gtk.main()
-
-if __name__ == '__main__':
-    main()
+    def on_toolbutton_open_clicked(self, widget):
+        print "Open toolbutton pressed"
+        

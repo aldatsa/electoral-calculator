@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=Electoralcalculator
+_Comment=An application to calculate electoral results
+Categories=GNOME;Utility;
+Exec=electoralcalculator
+Icon=electoralcalculator
+Terminal=false
+Type=Application
