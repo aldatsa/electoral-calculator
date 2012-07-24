@@ -66,9 +66,6 @@ class ElectoralcalculatorWindow(Window):
         self.tvwCandidaturesModel = None
         self.tvwCandidaturesTreeIter = None
 
-        # Get the main window pointer from UI
-        #self.mainWindow = self.builder.get_object("mainWindow")
-
         # Get txtSeats from the UI
         self.txtSeats = self.builder.get_object("txtSeats")
 
@@ -180,11 +177,6 @@ class ElectoralcalculatorWindow(Window):
 
         # Attache the model to the treeview
         self.lsvwResults.set_model(self.liststore)
-
-        # Show window. All other widgets are automatically shown by GtkBuilder
-        #self.mainWindow.show()
-        # Maximize the main window
-        #self.mainWindow.maximize()
 
     def show_info_message(self, widget, infoText):
         msgDlg = Gtk.MessageDialog(self,
