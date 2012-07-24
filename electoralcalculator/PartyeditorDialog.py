@@ -14,7 +14,7 @@ gettext.textdomain('electoralcalculator')
 class PartyeditorDialog(Gtk.Dialog):
     __gtype_name__ = "PartyeditorDialog"
 
-    def __new__(cls, **kwargs):
+    def __new__(cls, party='', votes=''):
         """Special static method that's automatically called by Python when 
         constructing a new instance of this class.
         
@@ -22,11 +22,7 @@ class PartyeditorDialog(Gtk.Dialog):
         """
         builder = get_builder('PartyeditorDialog')
         new_object = builder.get_object('partyeditor_dialog')
-        new_object.finish_initializing(builder, kwargs['party'], kwargs['votes'])
-        #for key in kwargs:
-        #    print "key: " + key + " -> arg: " + kwargs[key]
-        #print "party:" + kwargs['party']
-        #print "votes:" + kwargs['votes']
+        new_object.finish_initializing(builder, party, votes)
         return new_object
 
     def finish_initializing(self, builder, party, votes):
