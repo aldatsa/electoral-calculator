@@ -369,8 +369,16 @@ class ElectoralcalculatorWindow(Window):
             #                          self.setTreeElement,
             #                          self.tvwCandidaturesTreeIter)
             PartyEditor = PartyeditorDialog()
-            
-            PartyEditor.run()
+
+            response = PartyEditor.run()
+
+            if response == Gtk.ResponseType.OK:
+
+                party = PartyEditor.get_party()
+                votes = PartyEditor.get_votes()
+                print party + " -> " + votes
+                # TODO: Add code to update the name and votes of the party
+            PartyEditor.destroy()
             
         except:
             if areThereCandidatures(self.listStoreCandidatures) == False:

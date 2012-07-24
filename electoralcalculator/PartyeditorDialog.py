@@ -36,6 +36,8 @@ class PartyeditorDialog(Gtk.Dialog):
         # Get a reference to the builder and set up the signals.
         self.builder = builder
         self.ui = builder.get_ui(self)
+        self.entryParty = builder.get_object("entryParty")
+        self.entryVotes = builder.get_object("entryVotes")
 
     def on_btn_ok_clicked(self, widget, data=None):
         """The user has elected to save the changes.
@@ -51,6 +53,11 @@ class PartyeditorDialog(Gtk.Dialog):
         """
         pass
 
+    def get_party(self):
+        return self.entryParty.get_text()
+
+    def get_votes(self):
+        return self.entryVotes.get_text()
 
 if __name__ == "__main__":
     dialog = PartyeditorDialog()
