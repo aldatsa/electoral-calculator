@@ -336,7 +336,7 @@
                                         <property name="use_action_appearance">False</property>
                                         <property name="xalign">0</property>
                                         <property name="draw_indicator">True</property>
-                                        <property name="group"></property>
+                                        <property name="group">rbtnDhondt</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -354,7 +354,7 @@
                                         <property name="use_action_appearance">False</property>
                                         <property name="xalign">0</property>
                                         <property name="draw_indicator">True</property>
-                                        <property name="group"></property>
+                                        <property name="group">rbtnDhondt</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -372,7 +372,7 @@
                                         <property name="use_action_appearance">False</property>
                                         <property name="xalign">0</property>
                                         <property name="draw_indicator">True</property>
-                                        <property name="group"></property>
+                                        <property name="group">rbtnDhondt</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -425,7 +425,7 @@
                                         <property name="use_action_appearance">False</property>
                                         <property name="xalign">0</property>
                                         <property name="draw_indicator">True</property>
-                                        <property name="group"></property>
+                                        <property name="group">rbtnDhondt</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -443,7 +443,7 @@
                                         <property name="use_action_appearance">False</property>
                                         <property name="xalign">0</property>
                                         <property name="draw_indicator">True</property>
-                                        <property name="group"></property>
+                                        <property name="group">rbtnDhondt</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
