@@ -26,6 +26,8 @@ from electoralcalculator import ElectoralcalculatorWindow
 
 from electoralcalculator_lib import set_up_logging, get_version
 
+from electoralcalculator_lib.Database import check_db_dir_exists, create_db_dir
+
 def parse_options():
     """Support for command line options"""
     parser = optparse.OptionParser(version="%%prog %s" % get_version())
@@ -39,6 +41,10 @@ def parse_options():
 def main():
     'constructor for your class instances'
     parse_options()
+
+    # Check if the database dir exists, if it doesn't create it
+    if not check_db_dir_exists():
+        create_db_dir()
 
     # Run the application.    
     window = ElectoralcalculatorWindow.ElectoralcalculatorWindow()
