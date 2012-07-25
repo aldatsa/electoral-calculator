@@ -3,11 +3,6 @@
   <!-- interface-requires gtk+ 3.0 -->
   <!-- interface-requires electoralcalculator_window 1.0 -->
   <!-- interface-local-resource-path ../media -->
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-help</property>
-  </object>
   <object class="ElectoralcalculatorWindow" id="electoralcalculator_window">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Electoralcalculator</property>
@@ -258,6 +253,88 @@
                 <property name="label" translatable="yes">Save</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-save</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="separatortoolitem1">
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbuttonCut">
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
+                <property name="label" translatable="yes">Cut</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-cut</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbuttonCopy">
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
+                <property name="label" translatable="yes">Copy</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-copy</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbuttonPaste">
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
+                <property name="label" translatable="yes">Paste</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-paste</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="separatortoolitem2">
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbuttonPreferences">
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
+                <property name="label" translatable="yes">Preferences</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-preferences</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1047,5 +1124,10 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-help</property>
   </object>
 </interface>
