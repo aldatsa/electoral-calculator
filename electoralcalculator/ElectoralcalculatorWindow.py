@@ -530,5 +530,5 @@ class ElectoralcalculatorWindow(Window):
 
     def on_toolbuttonPreferences_clicked(self, widget):
         print "Preferences toolbutton pressed"
-        
+        self.on_mnu_preferences_activate(self) 
 
