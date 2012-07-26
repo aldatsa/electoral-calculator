@@ -376,11 +376,12 @@ class ElectoralcalculatorWindow(Window):
             response = PartyEditor.run()
 
             if response == Gtk.ResponseType.OK:
-
+                
+                # Get the new values from the PartyEditor dialog
                 party = PartyEditor.get_party()
                 votes = PartyEditor.get_votes()
-                print party + " -> " + votes
-                # TODO: Add code to update the name and votes of the party
+                
+                # Update the name and votes of the party
                 self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0] = party
                 self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][1] = votes
             PartyEditor.destroy()
