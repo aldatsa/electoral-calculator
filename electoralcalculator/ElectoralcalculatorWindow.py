@@ -381,6 +381,8 @@ class ElectoralcalculatorWindow(Window):
                 votes = PartyEditor.get_votes()
                 print party + " -> " + votes
                 # TODO: Add code to update the name and votes of the party
+                self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][0] = party
+                self.tvwCandidaturesModel[self.tvwCandidaturesTreeIter][1] = votes
             PartyEditor.destroy()
             
         except:
