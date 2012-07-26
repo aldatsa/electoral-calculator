@@ -513,6 +513,22 @@ class ElectoralcalculatorWindow(Window):
     # in the file electoralcalculator_lib/Window.py
 
     # Toolbar button's handlers
-    def on_toolbutton_open_clicked(self, widget):
+    def on_toolbuttonOpen_clicked(self, widget):
         print "Open toolbutton pressed"
+
+    def on_toolbuttonSave_clicked(self, widget):
+        print "Save toolbutton pressed"
+ 
+    def on_toolbuttonCut_clicked(self, widget):
+        print "Cut toolbutton pressed"
+
+    def on_toolbuttonCopy_clicked(self, widget):
+        print "Copy toolbutton pressed"
+
+    def on_toolbuttonPaste_clicked(self, widget):
+        print "Paste toolbutton pressed"
+
+    def on_toolbuttonPreferences_clicked(self, widget):
+        print "Preferences toolbutton pressed"
         
+
