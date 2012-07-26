@@ -482,9 +482,37 @@ class ElectoralcalculatorWindow(Window):
     def on_mainWindow_quit(self, widget):
         Gtk.main_quit()
 
-    def on_edit_copy_clicked(self, widget):
-        print "Ezin dut asmatu nola egin!!!!!!!!!!!!!!!!!!!!!!!!!"
+    # File menu item's handlers
+    def on_mnu_open_activate(self, widget):
+        print "menu item Open from the File menu clicked"
 
+    def on_mnu_save_activate(self, widget):
+        print "mnu item Save from the File menu clicked"
+
+    def on_mnu_save_as_activate(self, widget):
+        print "mnu item Save as from the File menu clicked"
+
+    # The signal handler on_mnu_close_activate is 
+    # in the file electoralcalculator_lib/Window.py
+
+    # Edit menu item's handlers
+    def on_mnu_cut_activate(self, widget):
+        print "mnu item Cut from the Edit menu clicked"
+
+    def on_mnu_copy_activate(self, widget):
+        print "mnu item  Copy from the Edit menu clicked"
+
+    def on_mnu_paste_activate(self, widget):
+        print "mnu item Paste from the Edit menu clicked"
+
+    # The signal handler on_mnu_preferences_activate is 
+    # in the file electoralcalculator_lib/Window.py
+
+    # Help menu item's handlers
+    # The signal handlers on_mnu_contents_activate and mnu_about_activate are 
+    # in the file electoralcalculator_lib/Window.py
+
+    # Toolbar button's handlers
     def on_toolbutton_open_clicked(self, widget):
         print "Open toolbutton pressed"
         
