@@ -18,7 +18,7 @@ import gettext
 from gettext import gettext as _
 gettext.textdomain('electoralcalculator')
 
-from gi.repository import Gtk # pylint: disable=E0611
+from gi.repository import Gtk, Gdk # pylint: disable=E0611
 import logging
 logger = logging.getLogger('electoralcalculator')
 
@@ -56,6 +56,8 @@ class ElectoralcalculatorWindow(Window):
         self.PreferencesDialog = PreferencesElectoralcalculatorDialog
 
         # Code for other initialization actions should be added here.
+
+        self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         
         # Calculation method
         self.method = Methods.DHONDT
@@ -69,18 +71,25 @@ class ElectoralcalculatorWindow(Window):
 
         # Get txtSeats from the UI
         self.txtSeats = self.builder.get_object("txtSeats")
+        self.txtSeats.connect('focus-in-event', self.on_entry_focus)
 
         # Get the optional data text entries from UI
         self.txtCensus = self.builder.get_object("txtCensus")
+        self.txtCensus.connect('focus-in-event', self.on_entry_focus)
         self.txtBlankVotes = self.builder.get_object("txtBlankVotes")
+        self.txtBlankVotes.connect('focus-in-event', self.on_entry_focus)
         self.txtNullVotes = self.builder.get_object("txtNullVotes")
+        self.txtNullVotes.connect('focus-in-event', self.on_entry_focus)
         self.txtThreshold = self.builder.get_object("txtThreshold")
+        self.txtThreshold.connect('focus-in-event', self.on_entry_focus)
 
         # Get txtParty from the UI
         self.txtParty = self.builder.get_object("txtParty")
+        self.txtParty.connect('focus-in-event', self.on_entry_focus)
 
         # Get txtVotes from the UI
         self.txtVotes = self.builder.get_object("txtVotes")
+        self.txtVotes.connect('focus-in-event', self.on_entry_focus)
 
         # Get tvwCandidatures from the UI
         self.tvwCandidatures = self.builder.get_object("tvwCandidatures")
@@ -519,16 +528,75 @@ class ElectoralcalculatorWindow(Window):
     def on_toolbuttonSave_clicked(self, widget):
         print "Save toolbutton pressed"
  
-    def on_toolbuttonCut_clicked(self, widget):
-        print "Cut toolbutton pressed"
+    #def on_toolbuttonCut_clicked(self, widget):
+    #    print "Cut toolbutton pressed"
 
-    def on_toolbuttonCopy_clicked(self, widget):
-        print "Copy toolbutton pressed"
+    #def on_toolbuttonCopy_clicked(self, widget):
+    #    print "Copy toolbutton pressed"
 
-    def on_toolbuttonPaste_clicked(self, widget):
-        print "Paste toolbutton pressed"
+    #def on_toolbuttonPaste_clicked(self, widget):
+    #    print "Paste toolbutton pressed"
 
     def on_toolbuttonPreferences_clicked(self, widget):
         print "Preferences toolbutton pressed"
         self.on_mnu_preferences_activate(self) 
 
+    def on_cut_clicked(self, widget):
+        # Get the bounds of the selected text
+        bounds = self.focus.get_selection_bounds()
+
+        # if the bounds of the selection are not an empty tuple,
+        # put the selection in the variable chars
+        # and copy it to the clipboard
+        # (get_selection_bounds returns an empty tuple if there is no selection)
+        # then delete the selection
+        if bounds:
+            chars = self.focus.get_chars(*bounds)
+            print "Copying '%s' from: %s" % (chars, self.focus)
+            self.clipboard.set_text(chars, -1)
+            print "Deleting text selection: characters from position %s to %s" % (bounds[0], bounds[1])
+            self.focus.delete_text(bounds[0], bounds[1])
+        else:
+            print "Can't cut if you don't select text"
+
+    def on_copy_clicked(self, widget):
+        # Get the bounds of the selected text
+        bounds = self.focus.get_selection_bounds()
+
+        # if the bounds of the selection are not an empty tuple,
+        # put the selection in the variable chars
+        # and copy it to the clipboard
+        # (get_selection_bounds returns an empty tuple if there is no selection)
+        if bounds:
+            chars = self.focus.get_chars(*bounds)
+            print "Copying '%s' from: %s" % (chars, self.focus)
+            self.clipboard.set_text(chars, -1)
+        else:
+            print "Can't copy if you don't select text"
+
+    def on_paste_clicked(self, widget):
+        # Get the text from the clipboard
+        text = self.clipboard.wait_for_text()
+
+        if text != None:
+            # If there's text selected in the target
+            # delete it and paste the contents of the clipboard
+            bounds = self.focus.get_selection_bounds()
+            if bounds:
+                print "Deleting text selection: characters from position %s to %s" % (bounds[0], bounds[1])
+                self.focus.delete_text(bounds[0], bounds[1])
+                print "Pasting '%s' into: '%s' at the position %s" % (text, self.focus, bounds[0])
+                self.focus.insert_text(text, bounds[0])
+
+            # else insert the text in the current position of the cursor in the target
+            else:
+                pos = self.focus.get_position()
+                #print "Cursor position in the target: %s" % pos
+                print "Pasting '%s' into: '%s' at the position %s" % (text, self.focus, pos)
+                self.focus.insert_text(text, pos)
+        else:
+            print "No text on the clipboard."
+
+    def on_entry_focus(self, widget, event):
+        print "Focused:", widget
+        self.focus = widget
