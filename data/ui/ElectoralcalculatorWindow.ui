@@ -241,6 +241,21 @@
               </packing>
             </child>
             <child>
+              <object class="GtkToolButton" id="toolbuttonSaveAs">
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_action_appearance">False</property>
+                <property name="label" translatable="yes">Save as...</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-save-as</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkSeparatorToolItem" id="separatortoolitem1">
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
