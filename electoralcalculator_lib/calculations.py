@@ -90,6 +90,13 @@ def calculateLargestRemainder(votes, numSeats, method, threshold,
     remainder = {}
     results = {}
 
+    # The largest remainder method requires the numbers of votes for each party
+    # to be divided by a quota representing the number of votes required for a
+    # seat (i.e. usually the total number of votes cast divided by the number
+    # of seats, or some similar formula). The result for each party will
+    # usually consist of an integer part plus a fractional remainder.
+
+    # Calculate the quota for the current method
     if method == Methods.HARE_QUOTA:
         quota = validVotes / numSeats  # Integer or float???
     elif method == Methods.DROOP_QUOTA:
@@ -97,6 +104,8 @@ def calculateLargestRemainder(votes, numSeats, method, threshold,
 
     #print quota
 
+    # Each party is first allocated a number of seats equal to their integer.
+    # This will generally leave some seats unallocated.
     tempSeats = 0
     for party in votes:
         tempVQ = votes[party] / float(quota)        # Calculate votes/quota
@@ -104,6 +113,10 @@ def calculateLargestRemainder(votes, numSeats, method, threshold,
         remainder[party] = tempVQ - results[party]  # Remainder
         tempSeats = tempSeats + results[party]
 
+    # The parties are then ranked on the basis of the fractional remainders,
+    # and the parties with the largest remainders are each allocated one
+    # additional seat until all the seats have been allocated.
+    # This gives the method its name.
     for party in sorted(remainder, key=remainder.get, reverse=True):
         #print party, remainder[party]
         if tempSeats < numSeats:
