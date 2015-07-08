@@ -26,5 +26,5 @@ The currently supported methods are:
 License
 -------
 
-Cellular Automata DS is free software/open source, and is distributed under the GNU General Public License (GPL) version 3 license.
+Electoral Calculator is free software/open source, and is distributed under the GNU General Public License (GPL) version 3 license.
     
